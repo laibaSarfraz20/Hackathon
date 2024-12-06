@@ -1,0 +1,190 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.header img {
+  width: 40px;
+  height: 40px;
+}
+.header .search-bar {
+  flex-grow: 1;
+  margin: 0 10px;
+  position: relative;
+}
+.header .search-bar input {
+  width: 30%;
+  padding: 10px 40px 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+.header .search-bar i {
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+.header .login-register {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.header .login-register:hover {
+  background-color: #0056b3;
+}
+.header .hiring {
+  color: #007bff;
+  margin-right: 20px;
+}
+.main-title {
+  text-align: center;
+  margin: 40px 0;
+}
+.main-title h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+.main-title p {
+  font-size: 18px;
+  color: #666;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar {
+  width: 20%;
+}
+.sidebar h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+.main-content {
+  width: 75%;
+}
+.trending-topics {
+  margin-bottom: 20px;
+}
+.trending-topics h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+.trending-topics .tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.trending-topics .tags span {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.article {
+  margin-bottom: 40px;
+}
+.article h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+.article p {
+  font-size: 16px;
+  color: #666;
+}
+.article .meta {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+}
+.article .meta span {
+  margin-right: 10px;
+}
+.article .meta .tag {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.article .meta .author {
+  margin-right: 5px;
+}
+.article .meta .read-time {
+  display: flex;
+  align-items: center;
+}
+.article .meta .read-time i {
+  margin-right: 5px;
+}
+.post-form {
+  display: none;
+  margin-bottom: 40px;
+}
+.post-form h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.post-form input, .post-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.post-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.post-form button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .content {
+      flex-direction: column;
+  }
+  .sidebar, .main-content {
+      width: 100%;
+  }
+}
