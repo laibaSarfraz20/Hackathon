@@ -18,5 +18,6 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = firebase.firestore();
-export{collection, getDocs ,db , analytics ,  getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged, sendEmailVerification}
+  const auth = firebase.auth();
+export{collection, getDocs ,db , auth ,analytics ,  getAuth ,createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged, sendEmailVerification }
 
