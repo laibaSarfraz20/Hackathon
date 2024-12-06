@@ -152,32 +152,49 @@ body {
 .article .meta .read-time i {
   margin-right: 5px;
 }
-.post-form {
-  display: none;
-  margin-bottom: 40px;
+.post-form, .posts-container {
+  background: #fff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.post-form h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-.post-form input, .post-form textarea {
+
+input, textarea {
   width: 100%;
-  padding: 10px;
   margin-bottom: 10px;
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 4px;
 }
-.post-form button {
-  background-color: #007bff;
+
+button {
+  background: #5cb85c;
   color: #fff;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 4px;
   cursor: pointer;
 }
-.post-form button:hover {
-  background-color: #0056b3;
+
+button:hover {
+  background: #4cae4c;
+}
+
+.post {
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h3 {
+  margin: 0 0 10px;
+}
+
+.post p {
+  margin: 0;
 }
 
 @media (max-width: 768px) {

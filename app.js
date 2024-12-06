@@ -1,90 +1,61 @@
 import{collection, getDocs ,db , analytics ,  getAuth} from "./firebase.js";
 
-function togglePostForm() {
-    var postForm = document.getElementById('postForm');
-    if (postForm.style.display === 'none' || postForm.style.display === '') {
-        postForm.style.display = 'block';
-    } else {
-        postForm.style.display = 'none';
-    }
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Function to add a new post
+async function addPost(title, content) {
+  try {
+    await db.collection("posts").add({
+      title: title,
+      content: content,
+      timestamp: new Date()
+    });
+    alert("Post added successfully!");
+    loadPosts(); 
+  } catch (error) {
+    console.error("Error adding post: ", error);
+  }
 }
 
-function createPost() {
-    var title = document.getElementById('postTitle').value;
-    var content = document.getElementById('postContent').value;
 
-    if (title && content) {
-        var article = document.createElement('div');
-        article.className = 'article';
+async function loadPosts() {
+  const postsContainer = document.getElementById("posts");
+  postsContainer.innerHTML = ""; 
 
-        var date = new Date();
-        var dateString = date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate();
-
-        article.innerHTML = `
-            <span class="date">${dateString}</span>
-            <h4>${title}</h4>
-            <p>${content}</p>
-            <div class="meta">
-                <span class="tag">New</span>
-                <span class="author">By You</span>
-                <span class="read-time"><i class="far fa-clock"></i> Just now</span>
-            </div>
-        `;
-
-        var mainContent = document.querySelector('.main-content');
-        mainContent.insertBefore(article, mainContent.firstChild);
-
-        document.getElementById('postTitle').value = '';
-        document.getElementById('postContent').value = '';
-        togglePostForm();
-    } else {
-        alert('Please fill in both the title and content.');
-    }
+  try {
+    const querySnapshot = await db.collection("posts").orderBy("timestamp", "desc").get();
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      const postElement = `
+        <div class="post">
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <small>${new Date(post.timestamp.toDate()).toLocaleString()}</small>
+        </div>
+      `;
+      postsContainer.innerHTML += postElement;
+    });
+  } catch (error) {
+    console.error("Error fetching posts: ", error);
+  }
 }
 
-// authentications
 
-  function login(event) {
-    event.preventDefault(); // Prevent form submission refresh
-    const username = document.getElementById("loginUsername").value; // Firebase auth doesn't use username directly
-    const password = document.getElementById("loginPassword").value;
+document.getElementById("blogForm").addEventListener("submit", (event) => {
+  event.preventDefault(); 
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
 
-    // Firebase login
-    auth.signInWithEmailAndPassword(username, password)
-      .then((userCredential) => {
-        // Logged in successfully
-        alert("Login successful!");
-        console.log("User:", userCredential.user);
-        // Redirect to your dashboard or another page
-        window.location.href = "your-dashboard-page.html";
-      })
-      .catch((error) => {
-        console.error("Login failed:", error.message);
-        alert("Error: " + error.message);
-      });
-  }
-// signup
-  function signup(event) {
-    event.preventDefault(); // Prevent form submission refresh
-    const username = document.getElementById("signupUsername").value; // Optional for your UI
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+  addPost(title, content);
+  event.target.reset();
+});
 
-    // Firebase signup
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Account created successfully
-        alert("Account created successfully!");
-        console.log("User:", userCredential.user);
-        // Optionally save username in Firestore or update profile
-        userCredential.user.updateProfile({ displayName: username });
-      })
-      .catch((error) => {
-        console.error("Signup failed:", error.message);
-        alert("Error: " + error.message);
-      });
-  }
+loadPosts();
 
+
+
+   
 
 
 

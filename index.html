@@ -134,20 +134,14 @@
                </span>
               </div>
              </div>
-             <div class="post-form" id="postForm">
-              <h3>
-               Create a New Post
-              </h3>
-              <input id="postTitle" placeholder="Title" type="text"/>
-              <textarea id="postContent" placeholder="Content" rows="5">
-              </textarea>
-              <button onclick="createPost()">
-               Post
-              </button>
-             </div>
-             <button onclick="togglePostForm()">
-              Create New Post
-             </button>
+             <div class="post-form">
+                <h2>Create a Blog Post</h2>
+                <form id="blogForm">
+                  <input type="text" id="title" placeholder="Title" required>
+                  <textarea id="content" placeholder="Write your post here..." required></textarea>
+                  <button type="submit">Post</button>
+                </form>
+              </div>
              <div class="article">
               <span class="date">
                Mar 1

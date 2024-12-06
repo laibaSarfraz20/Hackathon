@@ -1,4 +1,4 @@
-
+import{ getAuth ,createUserWithEmailAndPassword, signInWithEmailAndPassword ,onAuthStateChanged, sendEmailVerification}from "./firebase.js";
 // login signup
 const toggleButtons = document.querySelectorAll(".toggle-form");
 const formContent = document.querySelector(".form-content");
@@ -23,13 +23,17 @@ toggleButtons.forEach(button => {
 function login() {
   const username = document.getElementById('loginUsername').value;
   const password = document.getElementById('loginPassword').value;
-
-  // Simple validation
-  if (username === 'user' && password === 'password') {
-      window.location.href = '../index.html'; // Redirect to your website
-  } else {
-      alert('Invalid username or password');
-  }
+  auth.signInWithEmailAndPassword(username, password)
+  .then((userCredential) => {
+ 
+    alert("Login successful!");
+    console.log("User:", userCredential.user);
+    window.location.href = "../index.html";
+  })
+  .catch((error) => {
+    console.error("Login failed:", error.message);
+    alert("Error: " + error.message);
+  });
 }
 
 function signup() {
@@ -38,11 +42,22 @@ function signup() {
   const password = document.getElementById('signupPassword').value;
 
   // Simple validation
-  if (username && email && password) {
-      alert('Sign up successful! You can now log in.');
-      document.getElementById('signupForm').reset();
-  } else {
-      alert('Please fill in all fields');
-  }
+  auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Account created successfully
+    alert("Account created successfully!");
+    console.log("User:", userCredential.user);
+    // Optionally save username in Firestore or update profile
+    userCredential.user.updateProfile({ displayName: username });
+  })
+  .catch((error) => {
+    console.error("Signup failed:", error.message);
+    alert("Error: " + error.message);
+  });
 }
+
+
+
+
+
 
